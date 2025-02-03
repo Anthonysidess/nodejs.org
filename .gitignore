@@ -1,16 +1,34 @@
-# Generated HTML and other static files
-build/
 # Commonly ignored Node.js files
-node_modules/
+node_modules
 npm-debug.log
-.npm/
+.npm
+.env.*
 
-# OSX system files, the bane of our existence
-.DS_Store
-.AppleDouble
-.LSOverride
+# Next.js Build Output
+.next
+build
 
-# Netlify
-.netlify
+# Jest
+coverage
+.swc
+junit.xml
 
-.cache/
+# Storybook
+storybook-static
+build-storybook.log
+.nyc_output
+
+# Vercel Files
+.vercel
+.turbo
+cache
+
+# Cache Files
+.eslintmdcache
+.stylelintcache
+.prettiercache
+
+# TypeScript
+tsconfig.tsbuildinfo
+
+dist/

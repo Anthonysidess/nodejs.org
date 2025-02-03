@@ -1,18 +1,27 @@
-# Localization teams
-/locale/ar/ @nodejs/nodejs-ar
-/locale/ca/ # No Catalan team
-/locale/de/ @nodejs/nodejs-de
-/locale/es/ @nodejs/nodejs-es
-/locale/fa/ @nodejs/nodejs-fa
-/locale/fr/ @nodejs/nodejs-fr
-/locale/gl/ # No Galacian team
-/locale/it/ @nodejs/nodejs-it
-/locale/ja/ @nodejs/nodejs-ja
-/locale/ko/ @nodejs/nodejs-ko
-/locale/pt-br/ @nodejs/nodejs-pt
-/locale/ro/ @nodejs/nodejs-ro
-/locale/ru/ @nodejs/nodejs-ru
-/locale/tr/ @nodejs/nodejs-tr
-/locale/uk/ @nodejs/nodejs-uk
-/locale/zh-cn/ @nodejs/nodejs-cn
-/locale/zh-tw/ @nodejs/nodejs-tw
+# Website Development
+* @nodejs/nodejs-website
+
+# Infrastructure
+.github @nodejs/web-infra
+.husky @nodejs/web-infra
+
+# Framework
+apps/site/next.config.mjs @nodejs/web-infra
+apps/site/next.dynamic.mjs @nodejs/web-infra
+
+# Node.js Release Blog Posts
+apps/site/pages/en/blog/release @nodejs/releasers
+apps/site/pages/en/blog/announcements @nodejs/releasers
+
+# Package Ecosystem
+package.json @nodejs/nodejs-website
+turbo.json @nodejs/nodejs-website @nodejs/web-infra
+
+# Web Infrastructure
+crowdin.yml @nodejs/web-infra
+apps/site/redirects.json @nodejs/web-infra
+apps/site/site.json @nodejs/web-infra
+
+# Specific content
+apps/site/pages/en/learn/getting-started/security-best-practices.md @nodejs/security-wg
+apps/site/pages/en/learn/typescript @nodejs/typescript

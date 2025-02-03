@@ -1,76 +1,125 @@
 # Node.js Website Translation Policy
 
-Node.js is a global platform and so this site has many translations. The translation of the site into
-languages other than English is handled by the localization working group of the language in question. If you
-would like to contribute to the translation of nodejs.org, please refer to the following process:
+Node.js is a global platform, so this site has many translations. We use [Crowdin](https://crowdin.com) to translate the Node.js Website
 
-> Since Apr, 1 2020 translation process moved to [Crowdin](https://crowdin.com/project/nodejs-website)
+The site's translation into languages other than English is handled by [Crowdin translators](https://support.crowdin.com/translation-process-overview/).
 
-## Get started
+We use [`next-intl`](https://next-intl-docs.vercel.app/) as our Internationalization Library. We recommend reading its documentation for API usage.
 
-1. Open [nodejs-website](https://crowdin.com/project/nodejs-website) Crowdin project
-2. Find your locale and start translation. Find more details in [guide for volunteer translators](https://support.crowdin.com/for-volunteer-translators/)
+## How to translate
 
-All translated and approved content will be pushed to this repo automatically. You don't need to create any PRs with translation. Just keep localization process on Crowdin.
+1. Request to join the Node.js Website project on [Crowdin](https://crowdin.com/project/nodejs-web)
+2. [Select the language you want to translate](https://support.crowdin.com/joining-translation-project/#starting-translation)
+3. [Start translating](https://support.crowdin.com/online-editor/)
 
-Original source can be found in [/locale/en](https://github.com/nodejs/nodejs.org/tree/main/locale/en). If you find any problem with original source, please create a PR with changes directly to `/locale/en`. Crowdin automatically pull all updates within 24 hours.
+### Any questions or feedbacks on Translations
 
-### Can't find my locale on Crowdin
+If you have any questions or feedbacks on current translations, you can [start a discussion](https://crowdin.com/project/nodejs-web/discussions) by choosing the "New Topic" and your language from the right dropdown, or a [conversation](https://support.crowdin.com/conversations/) by adding your translators.
 
-Please create a [new issue](https://github.com/nodejs/nodejs.org/issues/new?template=03-i18n.md) in this repo. Crowdin managers team would be happy to add new languages.
+## How to add a new language
 
-## Localization groups
+Open discussion on the [Crowdin project](https://crowdin.com/project/nodejs-web) to request a new language. After wait for the language to be added to the project by the Crowdin manager
 
-An existing localization group is not required to start translation. You can contribute on Crowdin without it. Think about groups like a basement to communicate with other translators of your locale.
+After that, one of the member of the Node.js Website team should add the new language to the project.
 
-Contact your appropriate localization group, and discuss with them the best possible way to contribute. A list of the localization groups can be found below.
+### Adding a new language to the project
 
-* [`nodejs-ar`](https://github.com/nodejs/nodejs-ar) Arabic Community
-* [`nodejs-bg`](https://github.com/nodejs/nodejs-bg) Bulgarian Community
-* [`nodejs-bn`](https://github.com/nodejs/nodejs-bn) Bengali Community
-* [`nodejs-zh-CN`](https://github.com/nodejs/nodejs-zh-CN) Chinese Community
-* [`nodejs-cs`](https://github.com/nodejs/nodejs-cs) Czech Community
-* [`nodejs-da`](https://github.com/nodejs/nodejs-da) Danish Community
-* [`nodejs-de`](https://github.com/nodejs/nodejs-de) German Community
-* [`nodejs-el`](https://github.com/nodejs/nodejs-el) Greek Community
-* [`nodejs-es`](https://github.com/nodejs/nodejs-es) Spanish Community
-* [`nodejs-fa`](https://github.com/nodejs/nodejs-fa) Persian Community
-* [`nodejs-fi`](https://github.com/nodejs/nodejs-fi) Finnish Community
-* [`nodejs-fr`](https://github.com/nodejs/nodejs-fr) French Community
-* [`nodejs-he`](https://github.com/nodejs/nodejs-he) Hebrew Community
-* [`nodejs-hi`](https://github.com/nodejs/nodejs-hi) Hindi Community
-* [`nodejs-hu`](https://github.com/nodejs/nodejs-hu) Hungarian Community
-* [`nodejs-id`](https://github.com/nodejs/nodejs-id) Indonesian Community
-* [`nodejs-it`](https://github.com/nodejs/nodejs-it) Italian Community
-* [`nodejs-ja`](https://github.com/nodejs/nodejs-ja) Japanese Community
-* [`nodejs-ka`](https://github.com/nodejs/nodejs-ka) Georgian Community
-* [`nodejs-ko`](https://github.com/nodejs/nodejs-ko) Korean Community
-* [`nodejs-mk`](https://github.com/nodejs/nodejs-mk) Macedonian Community
-* [`nodejs-ms`](https://github.com/nodejs/nodejs-ms) Malaysian Community
-* [`nodejs-nl`](https://github.com/nodejs/nodejs-nl) Dutch Community
-* [`nodejs-no`](https://github.com/nodejs/nodejs-no) Norwegian Community
-* [`nodejs-pl`](https://github.com/nodejs/nodejs-pl) Polish Community
-* [`nodejs-pt`](https://github.com/nodejs/nodejs-pt) Portuguese Community
-* [`nodejs-ro`](https://github.com/nodejs/nodejs-ro) Romanian Community
-* [`nodejs-ru`](https://github.com/nodejs/nodejs-ru) Russian Community
-* [`nodejs-sv`](https://github.com/nodejs/nodejs-sv) Swedish Community
-* [`nodejs-ta`](https://github.com/nodejs/nodejs-ta) Tamil Community
-* [`nodejs-tr`](https://github.com/nodejs/nodejs-tr) Turkish Community
-* [`nodejs-zh-TW`](https://github.com/nodejs/nodejs-zh-TW) Taiwanese Community
-* [`nodejs-uk`](https://github.com/nodejs/nodejs-uk) Ukrainian Community
-* [`nodejs-vi`](https://github.com/nodejs/nodejs-vi) Vietnamese Community
+Go on `/i18n/config.json` and add the new language to the `locales` array.
 
-### Group for my locale does not exist
+Fill the language object with the following fields:
 
-If you can't find group for your locale:
+```json
+{
+  "code": "fr",
+  "localName": "Français",
+  "name": "French",
+  "langDir": "ltr",
+  "dateFormat": "DD.MM.YYYY",
+  "hrefLang": "fr",
+  "enabled": true
+}
+```
 
-1. Translate 1000 strings or more on Crowdin for your locale
-2. Find at least one more translator for your locale
-3. Create a [new issue](https://github.com/nodejs/nodejs.org/issues/new?template=03-i18n.md) in this repo requesting the creation of a group for your locale
+| Field Name   | Description                                                                                            | Examples     |
+| ------------ | ------------------------------------------------------------------------------------------------------ | ------------ |
+| `code`       | The language code. It must be the same as the folder name                                              | `fr`         |
+| `localName`  | The language name in its own language (it's use in language selector)                                  | `Français`   |
+| `name`       | The language name in English                                                                           | `French`     |
+| `langDir`    | The direction of the language. `ltr` for left to right, `rtl` for right to left                        | `ltr`        |
+| `dateFormat` | The date format. It must be a valid [moment.js format](https://momentjs.com/docs/#/displaying/format/) | `DD.MM.YYYY` |
+| `hrefLang`   | The language code in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format         | `fr`         |
+| `enabled`    | If the language is enabled or not                                                                      | `true`       |
 
-### Group for my locale is archived
+## Adding new Translation Keys
 
-If you find the group for your locale is archived:
+If you're making a new Component and adding Translation Keys for your Component, they should follow these guidelines:
 
-1. Try to contact members of the group by creating a [new issue](https://github.com/nodejs/nodejs.org/issues/new?template=03-i18n.md) in this repo. Include a mention of the group so members get notified of the issue.
-2. If there is no response from members in 7 days and if you have already done 1000 strings or more on Crowdin for your locale, open an issue in https://github.com/nodejs/admin requesting the repository be unarchived.
+- Only add the new translation keys on the `i18n/locales/en.json` file. Crowdin will handle on syncing the files and letting translators know there are new keys to be translated
+- The translation keys should have the prefix as the canonical path of your Component. If your Component is `components/Common/MyComponent` the prefix key should be `components.common.myComponent`
+  - The Translation Key suffix should be easy to understand and semantic. For example, if the key is about "the text of a button that when interacted it copies content to the clipboard", the suffix should probably be `copyButton.title`. The final translation key would be `components.common.myComponent.copyButton.title`
+  - Translation Keys should be in Camel Case only.
+  - The values of each Translation Key should follow the [ICU Message Syntax](https://next-intl-docs.vercel.app/docs/usage/messages#rendering-icu-messages)
+- All new Translation keys should be added at the bottom of the `i18n/locales/en.json` file. Since this makes it easier for Translators to notice that there are new Translation keys to be translated.
+
+#### Notes about Translation Keys
+
+It's important to mention that we use nested translation keys within the Locale files. This means that if your translation key is `components.common.myComponent.something`, you should actually define the key and value within:
+
+```json
+{
+  "components": {
+    ...,
+    "common": {
+      ...,
+      "myComponent": {
+        "something": "value of translation key"
+      }
+    }
+  }
+}
+```
+
+### Translations and Unit Testing
+
+Translation Keys should not be translated during Unit Testing. If your Component uses, for example `useTranslations`, you should provide the `<NextIntlProvider>` surrounding your `testing-library` render logic, or you can create a wrapper for your test. Note that you should not import the English messages to your Unit Test as:
+
+- Unit Testing should test a Component functionality.
+- Unit Tests should not rely on text, titles, or string bags, as these texts will change arbitrarily and make the test suite fail.
+  - In this case, you should test your component by aria-text, or other `aria-*` attributes or even by class names or other artifacts.
+- Visual Regression Testing is recommended to test how different languages and text appear within a Component.
+
+## Deploying Translations
+
+Translations are synced between Crowdin and the repository via GitHub Actions.
+
+- On every push to `main`, we upload any new source content.
+- Via a cron schedule, and as needed manually by a collaborator, we download completed translations.
+
+Incoming translations are linted to ensure they come from crowdin, and are also formatted to adhere to our project settings.
+
+## Why We Translate This section and Not That Section
+
+> First, what we mean by "section" is a part of the website. It's a collection of pages that are related to each other. They often correspond to the top-navigation of the site. For example, the "Learn" section is a collection of pages that are related to learning/discovering Node.js.
+
+Here we only talk about md/mdx files. The translation of React components is covered by a JSON dictionary and not covered here.
+
+We have these sections on the website:
+
+- Home page
+- Learn
+- About
+- Download
+- Blog
+- Docs (not this codebase at all)
+
+### Sections that are translated
+
+- **Home page**: The landing page is translated because it's the first page that people see when they visit the website. It's important that everyone can understand what Node.js is and what it can do.
+- **About**: This section is translated because it contains information about the Node.js project, its governance. There are no technical terms that are hard to translate.
+- **Download**: This section is translated because it contains information about how to download Node.js. And it's really important that everyone can understand how to download Node.js.
+
+### Sections that are not translated
+
+- **Learn**: Per TSC consensus, the learn section is not translated. It contains technical terms that are hard to translate. Maintainers do not have the ability or bandwidth to ensure quality. It's better to have the content in English than to have bad translations. If you want to have more information read [this message](https://github.com/nodejs/nodejs.org/issues/6429#issuecomment-2558265376) that further explains.
+- **Blog**: The blog is not translated because it's not useful to translate blog posts. Most of the blog posts are release notes, and it's not useful to translate them.
+- **Docs**: The API docs are too expansive, and versioned, to be translated.

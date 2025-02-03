@@ -1,95 +1,124 @@
-# [nodejs.org](https://nodejs.org/)
+<p align="center">
+  <br />
+  <a href="https://nodejs.org">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://nodejs.org/static/logos/nodejsLight.svg">
+      <img src="https://nodejs.org/static/logos/nodejsDark.svg" width="200px">
+    </picture>
+  </a>
+</p>
 
-[![CI Status](https://github.com/nodejs/nodejs.org/actions/workflows/ci.yml/badge.svg)](https://github.com/nodejs/nodejs.org/actions/workflows/ci.yml?query=branch%3Amain)
-[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Crowdin](https://badges.crowdin.net/nodejs-website/localized.svg)](https://crowdin.com/project/nodejs-website)
+<p align="center">
+  <a href="https://nodejs.org">Node.js</a> Website built using Next.js with TypeScript, CSS Modules/Tailwind, and MDXv3
+</p>
+
+<p align="center">
+  <a title="MIT License" href="LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License" />
+  </a>
+  <a title="Localised" href="https://crowdin.com/project/nodejs-web">
+    <img src="https://badges.crowdin.net/nodejs-web/localized.svg" alt="Crowdin Badge" />
+  </a>
+  <a title="Vercel" href="https://vercel.com">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/powered%20by-Vercel%20%E2%96%B2-white">
+      <img src="https://img.shields.io/badge/powered%20by-Vercel%20%E2%96%B2-black" alt="Powered by Vercel">
+    </picture>
+  </a>
+  <br />
+  <img src="https://github.com/nodejs/nodejs.org/actions/workflows/build.yml/badge.svg" alt="Build and Analysis Checks" />
+  <a title="scorecard" href="https://securityscorecards.dev/viewer/?uri=github.com/nodejs/nodejs.org">
+    <img src="https://api.securityscorecards.dev/projects/github.com/nodejs/nodejs.org/badge" alt="nodejs.org scorecard badge" />
+  </a>
+  <br />
+  <br />
+</p>
 
 ## What is this repo?
 
-[nodejs.org](https://nodejs.org/) by the [OpenJS Foundation](https://openjsf.org/) builds on the merged community's past website projects to form a self-publishing, community-managed version of the previous site.
+[Nodejs.org](https://nodejs.org/) by the [OpenJS Foundation](https://openjsf.org/) is the official website for the Node.js® JavaScript runtime. This repo is the source code for the website. It is built using [Next.js](https://nextjs.org), a React Framework.
 
-On a technical level, inspiration has been taken from the `iojs.org` repo while design and content has been migrated from the old [nodejs.org repo](https://github.com/nodejs/nodejs.org-archive). These technical changes have helped to facilitate community involvement and empower the foundation's internationalization communities to provide alternative website content in other languages.
+```bash
+npm ci
+npm run dev
 
-This repo's issues section has become the primary home for the Website WG's coordination efforts (meeting planning, minute approval, etc).
+# listening at localhost:3000
+```
 
 ## Contributing
 
-There are two ways to contribute to this project. The first is **submitting new features or fixing bugs** and the second is **translating content to other languages**.
+This project adopts the Node.js [Code of Conduct][].
 
-In both cases the workflow is different, please check how it is done in each case.
+Any person who wants to contribute to the Website is welcome! Please read [Contribution Guidelines][] and see the [Figma Design][] to understand better the structure of this repository.
 
-### To submit a new feature or a bugfix
+> \[!IMPORTANT]\
+> Please read our [Translation Guidelines][] before contributing to Translation and Localization of the Website
 
-Please contribute! There are plenty of [good first issues](https://github.com/nodejs/nodejs.org/labels/good%20first%20issue) to work on. To get started, you have to [fork](https://github.com/nodejs/nodejs.org/fork) this repo to your own GitHub account first. Then open up a terminal on your machine and enter the following commands:
+> \[!NOTE]\
+> We recommend a read of all Relevant Links below before doing code changes; Including Dependency changes, Content changes, and Code changes.
 
-```bash
-git clone https://github.com/<your user name>/nodejs.org.git
-cd nodejs.org
-npm install
-npm start
-```
+### Deployment
 
-This will start the development server on `http://localhost:8080/en/`. This page should reload automatically when you make changes to the code, but no code is perfect, so sometimes you may need to restart it. :)
+The Website is automatically deployed to [Vercel](https://vercel.com) through its GitHub App integration when new pushes happen on the `main` branch.
 
-If you want to submit a new feature or a bugfix, the best way is to create the changes in a separate branch, e.g.: `git checkout -b feature/mycoolfeature`. This will make it easier for you to submit a pull request and get your feature merged.
+Details regarding the deployment are only accessible to the maintainers of the Website Team due to certain limitations.
 
-### To translate content into other languages
+The current integration is owned by the OpenJS Foundation and managed by the Website Team.
 
-If you want to help translate to other languages or improve existing translations, it isn't necessary to work from GitHub. You can and should do it through Crowdin, this is the correct workflow.
+<details>
+  <summary>Legacy Deployment</summary>
 
-Crowdin is an online tool that facilitates the user experience for the translator, here is more information:
+The full setup is in <https://github.com/nodejs/build/tree/master/ansible/www-standalone> minus secrets and certificates.
 
-Website translations are handled via [Crowdin](https://crowdin.com/project/nodejs-website).
+The webhook is set up on GitHub for this project and talks to a small Node server on the host, which does the work. See the [github-webhook](https://github.com/rvagg/github-webhook) package for this.
 
-To help with localization, please read the [TRANSLATION](TRANSLATION.md) guide.
+</details>
 
-## Layout
+## Node.js Binaries & API Docs
 
-* Page templates are in `/layouts`
-* Global styles are in `/layouts/css`
-* Global static files are in `/static`
-* All content is in `/locale`
-  * Initial development usually happens in English: `/locale/en`
-  * `/locale/{{locale}}/site.json` is where global localization information lives.
-  * All content is in Markdown and is per locale.
-  * The top of each Markdown file is a block of YAML for page specific localization information that is passed to various templates.
-  * The bulk of the Markdown content for each page is referenced as `{{{content}}}` in the corresponding template.
+This repository does not contain the codebase or related infrastructure that serves `https://nodejs.org/api/`, `https://nodejs.org/docs/` or `https://nodejs.org/dist/`.
 
-## Serve/Build Options
+These are maintained in different repositories and we urge users to open **issues in their respective repositories**, for bug reports, feature requests or any matter related to these endpoints.
 
-* `DEFAULT_LOCALE={{locale}} node build.js` builds all the translated files present in the locale folder (will display 404 status code if file is not present), the static/css folder for all the Sass files, as well as copy the rest of the static assets to their subfolder in the build directory.
-* `DEFAULT_LOCALE={{locale}} node build.js --preserveLocale` the same as `node build.js` but it will add the pages present in the English locale that are missing instead of throwing 404 status code.
-* `DEFAULT_LOCALE={{locale}} npm run serve` builds only the files present in the specified locale folder (will display 404 status code if file is not present), then start the default website (`http://localhost:${port}/${mainLocale}`). Here `{port}` is 8080, `{mainLocale}` is `en` or the first specified language.
-* `DEFAULT_LOCALE={{locale}} npm run serve -- --preserveLocale` the same as `npm run serve ` but it will add the pages present in the English locale that are missing.
-* `npm run serve` builds all the current languages and returns 404 when a file is not present in the current locale, then start the default website (`http://localhost:${port}/${mainLocale}`). Here `{port}` is 8080, `{mainLocale}` is `en` in default.
-* `npm run serve -- --preserveLocale` the same as `npm run serve` but it will add the pages present in the English locale that are missing instead of throwing 404 status code.
+- [`release-cloudflare-worker`](https://github.com/nodejs/release-cloudflare-worker): The codebase responsible for serving the Node.js Distribution Binaries, API Docs and any other assets from the links mentioned above.
+  - We use Cloudflare R2 Buckets for storing our Assets and Cloudflare Workers for serving these Assets to the Web.
+- [`node/doc/api`](https://github.com/nodejs/node/tree/main/doc/api): The source code of our API docs, it contains all the Node.js API Documentation Markdown files
+  - [`node/doc`](https://github.com/nodejs/node/tree/main/doc) contains the HTML templates, CSS styles and JavaScript code that runs on the client-side of our API Docs generated pages.
+  - [`node/tools/doc`](https://github.com/nodejs/node/tree/main/tools/doc) contains the tooling that validates, lints, builds and compiles our API Docs. Also responsible for generating what you see when accessing `https://nodejs.org/api/`.
 
-## Test Options
+## Relevant Links
 
-Before submitting, you must pass all the unit tests and syntax checks by running the two commands below:
+[Code of Conduct][]
 
-* `npm-run-all test:lint test:unit` run all the unit test cases in `tests` folder, as well as check syntax with eslint.
-* `npm-run-all --parallel test:lint:*` run all the syntax checks for `js`, `md` and other related files.
+[Contribution Guidelines][]
 
-There're also two syntax check commands for you:
-* `npm run test:lint:js -- --fix` try to automatically fix some formations for all the js files.
-* `npm run test:lint:stylelint -- --fix` try to automatically fix some formations for all the css/scss files.
+[Collaborator Guide][]
 
-## Notice
+[Figma Design][]
 
-* Multiple locales can be built by using comma-separated values in the `DEFAULT_LOCALE` variable: `DEFAULT_LOCALE=en,es,it`.
-* For other options, see `package.json`.
+[Content vs Code][]
 
-## Deployment
+[Dependency Pinning][]
 
-Full setup is in <https://github.com/nodejs/build/tree/master/ansible/www-standalone> minus secrets and certificates. The webhook is setup on GitHub for this project and talks to a small Node server on the host which does the work. See the [github-webhook](https://github.com/rvagg/github-webhook) package for this.
+[Translation Guidelines][]
 
-## Content vs. Code
+[Status Page](https://status.nodejs.org/) of the Node.js web infrastructure.
 
-The Website Working Group is primarily concerned with the code and overall structure of the website.
+## Thanks
 
-The content of the website comes from a variety of working groups (Evangelism, Core, i18n, etc).
-The Website WG defers to these WGs on matters of content and routinely adds collaborators from these
-working groups as they add and improve content on the website. In other words, the Website WG is not
-an *editorial* Working Group except when no other Working Group has taken responsibility for a
-content area.
+- Thanks to all contributors and collaborators that make this project possible.
+- Thanks to [Chromatic](https://www.chromatic.com/) for providing the visual testing platform that helps us review UI changes and catch visual regressions.
+- Thanks to [Vercel](https://www.vercel.com/) for providing the infrastructure that serves and powers the Node.js Website
+- Thanks to [Cloudflare](https://cloudflare.com) for providing the infrastructure that serves Node.js's Website, Node.js's CDN and more.
+  - A really warm thank you to Cloudflare as we would not be able to serve our community without their immense support.
+- Thanks to [Sentry](https://sentry.io/welcome/) for providing an open source license for their error reporting, monitoring and diagnostic tools.
+- Thanks to [Crowdin](https://crowdin.com/) for providing a platform that allows us to localize the Node.js Website and collaborate with translators.
+- Thanks to [Orama](https://docs.oramasearch.com/) for providing a search platform that indexes our expansive content and provides lightning-fast results for our users.
+
+[code of conduct]: https://github.com/nodejs/admin/blob/main/CODE_OF_CONDUCT.md
+[contribution guidelines]: https://github.com/nodejs/nodejs.org/blob/main/CONTRIBUTING.md
+[content vs code]: https://github.com/nodejs/nodejs.org/blob/main/CONTENT_VS_CODE.md
+[dependency pinning]: https://github.com/nodejs/nodejs.org/blob/main/DEPENDENCY_PINNING.md
+[collaborator guide]: https://github.com/nodejs/nodejs.org/blob/main/COLLABORATOR_GUIDE.md
+[figma design]: https://www.figma.com/file/pu1vZPqNIM7BePd6W8APA5/Node.js
+[translation guidelines]: https://github.com/nodejs/nodejs.org/blob/main/TRANSLATION.md
